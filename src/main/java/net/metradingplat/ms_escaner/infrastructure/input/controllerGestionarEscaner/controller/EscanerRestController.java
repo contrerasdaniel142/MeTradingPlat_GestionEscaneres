@@ -47,7 +47,6 @@ public class EscanerRestController {
     public ResponseEntity<EscanerDTORespuesta> obtenerEscanerPorId(
             @PathVariable("id") @NotNull(message = "escaner.id.empty") @Positive(message = "escaner.id.positive") Long id) {
         Escaner escaner = this.objGestionarEscanerCUInt.obtenerEscanerPorId(id);
-        if (escaner == null) return ResponseEntity.notFound().build();
         EscanerDTORespuesta dtoRespuesta = this.objMapper.mappearDeEscanerARespuesta(escaner);
         this.objFuenteMensajes.internacionalizarEscaner(dtoRespuesta);
         return ResponseEntity.ok(dtoRespuesta);
